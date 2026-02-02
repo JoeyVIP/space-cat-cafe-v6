@@ -1,0 +1,825 @@
+/* ===== 重置和基礎樣式 ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #e0e0e0;
+  background: linear-gradient(135deg, #0a1628 0%, #1a2847 100%);
+  min-height: 100vh;
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== 容器 ===== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== 導航列（手機優先）===== */
+.navbar {
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #64b5f6;
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+/* 漢堡選單（手機版）*/
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #64b5f6;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* 導航選單（手機版：垂直，隱藏）*/
+.nav-menu {
+  position: fixed;
+  top: 70px;
+  right: -100%;
+  width: 250px;
+  height: calc(100vh - 70px);
+  background: rgba(10, 22, 40, 0.98);
+  list-style: none;
+  padding: 2rem 0;
+  transition: right 0.3s ease;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-menu.active {
+  right: 0;
+}
+
+.nav-menu li {
+  padding: 0;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 1rem 2rem;
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  background: rgba(100, 181, 246, 0.1);
+  color: #64b5f6;
+  border-left-color: #64b5f6;
+}
+
+/* ===== 英雄區塊 ===== */
+.hero {
+  background: linear-gradient(135deg, #1a2847 0%, #2d3e5f 100%);
+  padding: 3rem 0;
+  text-align: center;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '⭐';
+  position: absolute;
+  font-size: 100px;
+  opacity: 0.1;
+  top: 20px;
+  right: 20px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '🌙';
+  position: absolute;
+  font-size: 80px;
+  opacity: 0.1;
+  bottom: 30px;
+  left: 30px;
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: #64b5f6;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: #b0bec5;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+/* ===== 按鈕 ===== */
+.btn {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  min-width: 44px;
+  min-height: 44px;
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(100, 181, 246, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #42a5f5 0%, #2196f3 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(100, 181, 246, 0.4);
+}
+
+/* ===== 區塊標題 ===== */
+.section-title {
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #64b5f6;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== 特色區塊 ===== */
+.features {
+  padding: 3rem 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: rgba(26, 40, 71, 0.6);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(100, 181, 246, 0.2);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: #64b5f6;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  color: #b0bec5;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+/* ===== 展示區塊 ===== */
+.showcase {
+  padding: 3rem 0;
+  background: rgba(26, 40, 71, 0.3);
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.showcase-item {
+  background: rgba(26, 40, 71, 0.6);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+}
+
+.showcase-item:hover {
+  transform: scale(1.03);
+}
+
+.showcase-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #64b5f6 0%, #9c27b0 100%);
+  position: relative;
+}
+
+.showcase-image::after {
+  content: '🐱☕';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  opacity: 0.7;
+}
+
+.cat-latte {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.cat-mocha {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.cat-tea {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.showcase-item h3 {
+  padding: 1.5rem 1.5rem 0.5rem;
+  color: #64b5f6;
+  font-size: 1.3rem;
+}
+
+.showcase-item p {
+  padding: 0 1.5rem 1.5rem;
+  color: #b0bec5;
+  line-height: 1.6;
+}
+
+/* ===== 頁面標題 ===== */
+.page-header {
+  background: linear-gradient(135deg, #2d3e5f 0%, #1a2847 100%);
+  padding: 3rem 0;
+  text-align: center;
+  border-bottom: 2px solid rgba(100, 181, 246, 0.3);
+}
+
+.page-header h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: #64b5f6;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #b0bec5;
+}
+
+/* ===== 故事區塊 ===== */
+.story {
+  padding: 3rem 0;
+}
+
+.story-content h2 {
+  color: #64b5f6;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1.5rem;
+}
+
+.story-content p {
+  color: #b0bec5;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* ===== 團隊區塊 ===== */
+.team {
+  padding: 3rem 0;
+  background: rgba(26, 40, 71, 0.3);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.team-member {
+  background: rgba(26, 40, 71, 0.6);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+}
+
+.member-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #64b5f6 0%, #9c27b0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  border: 3px solid rgba(100, 181, 246, 0.3);
+}
+
+.cat-avatar-1::after { content: '🐱'; }
+.cat-avatar-2::after { content: '🐈'; }
+.cat-avatar-3::after { content: '😺'; }
+.cat-avatar-4::after { content: '😸'; }
+
+.team-member h3 {
+  color: #64b5f6;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.team-member .role {
+  color: #90caf9;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.team-member p {
+  color: #b0bec5;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+/* ===== 使命願景 ===== */
+.mission {
+  padding: 3rem 0;
+}
+
+.mission-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.mission-item {
+  background: rgba(26, 40, 71, 0.6);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+}
+
+.mission-item h3 {
+  color: #64b5f6;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.mission-item p {
+  color: #b0bec5;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+/* ===== 菜單區塊 ===== */
+.menu-section {
+  padding: 3rem 0;
+}
+
+.menu-section.alt-bg {
+  background: rgba(26, 40, 71, 0.3);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.menu-item {
+  background: rgba(26, 40, 71, 0.6);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item:hover {
+  transform: translateX(5px);
+  box-shadow: -3px 0 10px rgba(100, 181, 246, 0.2);
+}
+
+.menu-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.menu-item h3 {
+  color: #64b5f6;
+  font-size: 1.2rem;
+}
+
+.price {
+  color: #90caf9;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.menu-item p {
+  color: #b0bec5;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+/* ===== 聯絡資訊 ===== */
+.contact-info {
+  padding: 3rem 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.contact-card {
+  background: rgba(26, 40, 71, 0.6);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+}
+
+.contact-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact-card h3 {
+  color: #64b5f6;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card p {
+  color: #b0bec5;
+  line-height: 1.8;
+  font-size: 0.9rem;
+}
+
+/* ===== 聯絡表單 ===== */
+.contact-form-section {
+  padding: 3rem 0;
+  background: rgba(26, 40, 71, 0.3);
+}
+
+.form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-wrapper h2 {
+  color: #64b5f6;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.form-description {
+  text-align: center;
+  color: #b0bec5;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.contact-form {
+  background: rgba(26, 40, 71, 0.6);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  color: #64b5f6;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.875rem;
+  background: rgba(10, 22, 40, 0.5);
+  border: 1px solid rgba(100, 181, 246, 0.3);
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  min-height: 44px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #64b5f6;
+  box-shadow: 0 0 0 2px rgba(100, 181, 246, 0.2);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  display: none;
+}
+
+.form-message.success {
+  display: block;
+  background: rgba(76, 175, 80, 0.2);
+  color: #81c784;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.form-message.error {
+  display: block;
+  background: rgba(244, 67, 54, 0.2);
+  color: #e57373;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+/* ===== 社群區塊 ===== */
+.social-section {
+  padding: 3rem 0;
+}
+
+.social-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(26, 40, 71, 0.6);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+  transition: all 0.3s ease;
+  color: #b0bec5;
+  min-height: 44px;
+}
+
+.social-link:hover {
+  background: rgba(100, 181, 246, 0.1);
+  border-color: #64b5f6;
+  transform: translateX(5px);
+}
+
+.social-icon {
+  font-size: 1.8rem;
+}
+
+/* ===== 頁尾 ===== */
+.footer {
+  background: rgba(10, 22, 40, 0.9);
+  padding: 3rem 0 1rem;
+  margin-top: 3rem;
+  border-top: 2px solid rgba(100, 181, 246, 0.3);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+  color: #64b5f6;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-section p {
+  color: #b0bec5;
+  line-height: 1.8;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(100, 181, 246, 0.2);
+  color: #78909c;
+  font-size: 0.9rem;
+}
+
+/* ===== 平板響應式 (768px+) ===== */
+@media (min-width: 768px) {
+  /* 隱藏漢堡選單 */
+  .hamburger {
+    display: none;
+  }
+
+  /* 導航選單改為水平 */
+  .nav-menu {
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    box-shadow: none;
+  }
+
+  .nav-menu li {
+    padding: 0;
+  }
+
+  .nav-menu a {
+    padding: 0.5rem 1rem;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav-menu a:hover,
+  .nav-menu a.active {
+    background: transparent;
+    border-bottom-color: #64b5f6;
+  }
+
+  /* Grid 改為雙欄 */
+  .features-grid,
+  .showcase-grid,
+  .team-grid,
+  .menu-grid,
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mission-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .social-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== 桌面響應式 (1024px+) ===== */
+@media (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+
+  .container {
+    padding: 0 40px;
+  }
+
+  .hero {
+    padding: 5rem 0;
+    min-height: 500px;
+  }
+
+  .features-grid,
+  .showcase-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .social-links {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .showcase-image {
+    height: 250px;
+  }
+
+  .member-avatar {
+    width: 150px;
+    height: 150px;
+    font-size: 4rem;
+  }
+}
