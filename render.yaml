@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: space-cat-cafe-v6
+    env: static
+    buildCommand: echo "Build complete"
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
